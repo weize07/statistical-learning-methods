@@ -17,15 +17,15 @@ class BinaryPerceptron(object):
         labels:     training set, labels of features;
     """
 
-    def __init__(self, features, labels, rate):
+    def __init__(self, features, labels, rate, study_max=10000, nochange_max=50):
         """Inits BinaryPerceptron."""
         self.features = features
         self.labels = labels
         self.w = np.zeros(features[0].size)
         self.b = 0
         self.rate = rate
-        self.study_max = 10000
-        self.nochange_max = 50
+        self.study_max = study_max
+        self.nochange_max = nochange_max
 
     def train(self):
         """learn w and b from training set."""
@@ -52,6 +52,7 @@ class BinaryPerceptron(object):
         print self.w
         print 'bias: '
         print self.b
+        print '---------------'
 
     def predict(self, input):
         res = np.dot(input, self.w) + self.b
@@ -73,3 +74,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
