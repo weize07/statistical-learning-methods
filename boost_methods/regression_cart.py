@@ -7,6 +7,7 @@ import math
 import random
 import time
 import sys
+from sklearn.metrics import r2_score
 
 class RegressionCART(object):
     def __init__(self, inputs, labels, loss_func='square', max_level=10):
@@ -129,20 +130,15 @@ def main():
         splits = line.strip().split('\t')
         inputs.append([float(splits[0]), float(splits[1])])
         labels.append(float(splits[2]))
-    r_cart = RegressionCART(inputs, labels, 'square', 4)
+    r_cart = RegressionCART(inputs, labels, 'square', 2)
     r_cart.train()
-    y = r_cart.predict([1, 0.1])
-    print y
-    y = r_cart.predict([1, 0.3])
-    print y
-    y = r_cart.predict([1, 0.4])
-    print y
-    y = r_cart.predict([1, 0.5])
-    print y
-    y = r_cart.predict([1, 0.6])
-    print y
-    y = r_cart.predict([1, 0.8])
-    print y
+    predicts = []
+    for x in inputs:
+        y = r_cart.predict(x)
+        predicts.append(y)
+        # print x, y
+    score = r2_score(labels, predicts)
+    print 'accuracy_score: ', score
 
 if __name__ == '__main__':
     main()
