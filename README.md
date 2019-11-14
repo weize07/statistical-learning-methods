@@ -1,1 +1,2 @@
-- Implement part of the algorithms in the text book 《统计学习方法》 written by Li Hang. 
+- Implement part of the algorithms in《统计学习方法》by Li Hang. 
+- Statistic learning methods from scratch.
